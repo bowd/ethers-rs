@@ -29,8 +29,8 @@ pub const CONSTANTINOPLE_SOLC: Version = Version::new(0, 4, 21);
 pub const PETERSBURG_SOLC: Version = Version::new(0, 5, 5);
 
 /// Istanbul support
-/// <https://blog.soliditylang.org/2019/12/09/solidity-0.5.14-release-announcement/>
-pub const ISTANBUL_SOLC: Version = Version::new(0, 5, 14);
+/// <https://blog.soliditylang.org/2019/11/14/solidity-0.5.13-release-announcement/>
+pub const ISTANBUL_SOLC: Version = Version::new(0, 5, 13);
 
 /// Berlin support
 /// <https://blog.soliditylang.org/2021/06/10/solidity-0.8.5-release-announcement/>
