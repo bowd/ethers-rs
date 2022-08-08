@@ -314,7 +314,7 @@ impl ClientBuilder {
             }
             Chain::Evmos => urls("https://evm.evmos.org/api", "https://evm.evmos.org/"),
             Chain::EvmosTestnet => urls("https://evm.evmos.dev/api", "https://evm.evmos.dev/"),
-            Chain::Celo => urls("https://celoscan.io/api/", "https://celoscan.io"),
+            Chain::Celo => urls("https://api.celoscan.io/api", "https://celoscan.io"),
             Chain::CeloAlfajores => urls("https://alfajores-blockscout.celo-testnet.org//api/", "https://alfajores-blockscout.celo-testnet.org/"),
             Chain::CeloBaklava => urls("https://baklava-blockscout.celo-testnet.org//api/", "https://baklava-blockscout.celo-testnet.org/"),
             chain => return Err(EtherscanError::ChainNotSupported(chain)),
