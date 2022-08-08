@@ -113,6 +113,11 @@ impl Client {
             Chain::AnvilHardhat | Chain::Dev => {
                 return Err(EtherscanError::LocalNetworksNotSupported)
             }
+            Chain::Celo |
+            Chain::CeloAlfajores |
+            Chain::CeloBaklava => {
+                std::env::var("BLOCKSCOUT_API_KEY").or_else(|_| std::env::var("CELOSCAN_API_KEY"))?
+            }
         };
         Self::new(chain, api_key)
     }
@@ -309,6 +314,9 @@ impl ClientBuilder {
             }
             Chain::Evmos => urls("https://evm.evmos.org/api", "https://evm.evmos.org/"),
             Chain::EvmosTestnet => urls("https://evm.evmos.dev/api", "https://evm.evmos.dev/"),
+            Chain::Celo => urls("https://celoscan.io/api/", "https://celoscan.io"),
+            Chain::CeloAlfajores => urls("https://alfajores-blockscout.celo-testnet.org//api/", "https://alfajores-blockscout.celo-testnet.org/"),
+            Chain::CeloBaklava => urls("https://baklava-blockscout.celo-testnet.org//api/", "https://baklava-blockscout.celo-testnet.org/"),
             chain => return Err(EtherscanError::ChainNotSupported(chain)),
         };
         self.with_api_url(etherscan_api_url?)?.with_url(etherscan_url?)

@@ -59,6 +59,9 @@ pub enum Chain {
     EvmosTestnet = 9000,
     Aurora = 1313161554,
     AuroraTestnet = 1313161555,
+    Celo = 42220,
+    CeloAlfajores = 44787,
+    CeloBaklava = 62320,
 }
 
 // === impl Chain ===
@@ -84,6 +87,7 @@ impl Chain {
             Chain::Cronos | Chain::CronosTestnet => 5_700,
             Chain::Evmos | Chain::EvmosTestnet => 1_900,
             Chain::Aurora | Chain::AuroraTestnet => 1_100,
+            Chain::Celo | Chain::CeloAlfajores | Chain::CeloBaklava => 5_000,
             Chain::Oasis => 5_500,
             Chain::Emerald => 6_000,
             Chain::Dev | Chain::AnvilHardhat => 200,
@@ -135,6 +139,9 @@ impl fmt::Display for Chain {
             Chain::EvmosTestnet => "evmos-testnet",
             Chain::Aurora => "aurora",
             Chain::AuroraTestnet => "aurora-testnet",
+            Chain::Celo => "celo",
+            Chain::CeloAlfajores => "celo-alfajores",
+            Chain::CeloBaklava => "celo-baklava",
         };
 
         write!(formatter, "{}", chain)
@@ -202,7 +209,10 @@ impl TryFrom<u64> for Chain {
             9000 => Chain::EvmosTestnet,
             1313161554 => Chain::Aurora,
             1313161555 => Chain::AuroraTestnet,
-            _ => return Err(ParseChainError(chain.to_string())),
+            42220 => Chain::Celo,
+            44787 => Chain::CeloAlfajores,
+            62320 => Chain::CeloBaklava,
+                _ => return Err(ParseChainError(chain.to_string())),
         })
     }
 }
@@ -258,6 +268,9 @@ impl FromStr for Chain {
             "emerald-testnet" => Chain::EmeraldTestnet,
             "aurora" => Chain::Aurora,
             "aurora-testnet" => Chain::AuroraTestnet,
+            "celo" => Chain::Celo,
+            "celo-alfajores" => Chain::CeloAlfajores,
+            "celo-baklava" => Chain::CeloBaklava,
             _ => return Err(ParseChainError(chain.to_owned())),
         })
     }
@@ -281,7 +294,10 @@ impl Chain {
                 Chain::Rsk |
                 Chain::Oasis |
                 Chain::Emerald |
-                Chain::EmeraldTestnet,
+                Chain::EmeraldTestnet |
+                Chain::Celo |
+                Chain::CeloAlfajores |
+                Chain::CeloBaklava
         )
     }
 }
